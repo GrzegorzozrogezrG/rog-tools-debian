@@ -24,10 +24,10 @@ case "$choice" in
     "Graphics: INTEGRATED")
         zenity --question --text="Switch to Integrated?" && supergfxctl -m Integrated ;;
     "Start Guardian") 
-        nohup "$HOME/rog_guardian.sh" > /dev/null 2>&1 &
+        nohup /usr/local/bin/rog-guardian > /dev/null 2>&1 &
         notify-send "ROG Dashboard" "Guardian Active" ;;
     "Stop Guardian") 
-        pkill -f rog_guardian.sh && notify-send "ROG Dashboard" "Guardian Stopped" ;;
+        pkill -f rog-guardian && notify-send "ROG Dashboard" "Guardian Stopped" ;;
     "Aura: Rainbow") asusctl aura effect rainbow-cycle --speed low ;;
     "Aura: LED OFF") asusctl aura effect static -c 000000 ;;
     "Battery Limit 80%") asusctl battery-policy 80 ;;

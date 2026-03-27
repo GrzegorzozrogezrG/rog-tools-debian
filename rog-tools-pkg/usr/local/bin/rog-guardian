@@ -15,7 +15,7 @@ echo "ROG Guardian started. Monitoring temperatures..."
 
 while true; do
     # Read current CPU temperature
-    current_temp=$(cat $TEMP_PATH)
+    current_temp=$(cat "$TEMP_PATH")
     
     # 1. ENTER TURBO MODE (High Load)
     # If temp is above 80°C and we aren't already in Turbo
