@@ -89,7 +89,7 @@ sudo apt install ./rog-tools-custom.deb
 ### Manual Installation
 If you prefer to run the scripts directly:
 
-Clone the repo: git clone https://github.com/yourusername/rog-tools.git
+Clone the repo
 
 Make scripts executable: chmod +x src/*.sh
 
