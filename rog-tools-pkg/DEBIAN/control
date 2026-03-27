@@ -1,0 +1,10 @@
+Package: rog-tools-custom
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: asusctl, supergfxctl, zenity, libnotify-bin, bash
+Maintainer: YourName <youremail@example.com>
+Description: Custom ROG Dashboard and Temperature Guardian for ASUS Laptops.
+ Integrated tools for managing power profiles, GPU MUX switch, and battery limits.
+ Includes an automated background temperature monitor (Guardian).

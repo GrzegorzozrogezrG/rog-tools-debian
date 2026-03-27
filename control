@@ -1,0 +1,8 @@
+Package: rog-tools-debian
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Depends: asusctl, supergfxctl, libnotify-bin, zenity
+Maintainer: greg
+Description: A control utility package for the ASUS ROG Strix G513RC. Includes a dashboard GUI and a thermal watchdog script.

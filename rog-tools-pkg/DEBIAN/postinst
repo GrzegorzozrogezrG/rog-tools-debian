@@ -1,0 +1,4 @@
+#!/bin/sh
+chmod +x /usr/local/bin/rog-dashboard
+chmod +x /usr/local/bin/rog-guardian
+echo "ROG Tools installed successfully. Run 'rog-dashboard' to start."
