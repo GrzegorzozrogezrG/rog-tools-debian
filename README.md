@@ -25,11 +25,11 @@ Grawity provides a repository that works well with Debian Testing/Unstable. Run 
 
 1. **Add the repository key:**
    ```bash
-   sudo wget -O /usr/share/keyrings/grawity-asus.gpg [https://pkg.pks.org.uk/repo/asus-linux/dists/debian/Release.key](https://pkg.pks.org.uk/repo/asus-linux/dists/debian/Release.key)
+   sudo wget -O /usr/share/keyrings/grawity-asus.gpg https://pkg.pks.org.uk/repo/asus-linux/dists/debian/Release.key
    ```
 2. **Add the source list:**
     ```bash
-    echo "deb [signed-by=/usr/share/keyrings/grawity-asus.gpg] [https://pkg.pks.org.uk/repo/asus-linux/debian](https://pkg.pks.org.uk/repo/asus-linux/debian) testing main" | sudo tee /etc/apt/sources.list.d/asus-linux.list
+    echo "deb [signed-by=/usr/share/keyrings/grawity-asus.gpg] https://pkg.pks.org.uk/repo/asus-linux/debian testing main" | sudo tee /etc/apt/sources.list.d/asus-linux.list
     ```
 
 3. **Install the tools**
@@ -53,22 +53,22 @@ If the repository above doesn't support your specific architecture or if you fac
    ```bash
    sudo apt install build-essential git cmake pkg-config libclang-dev libudev-dev libfontconfig1-dev
    ```
-2. **Instal the Rust Toolchain:**
+2. **Install the Rust Toolchain:**
     Do not use apt install rustc as it's often outdated for these tools.
     ```bash
-    curl --proto '=https' --tlsv1.2 -sSf [https://sh.rustup.rs](https://sh.rustup.rs) | sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
     ```
 3. **Clone and build asusctl:**
     ```bash
-    git clone [https://gitlab.com/asus-linux/asusctl.git](https://gitlab.com/asus-linux/asusctl.git)
+    git clone https://gitlab.com/asus-linux/asusctl.git
     cd asusctl
     make
     sudo make install
     ```
 4. **Clone and Build supergfxctl:**
     ```bash
-    git clone [https://gitlab.com/asus-linux/supergfxctl.git](https://gitlab.com/asus-linux/supergfxctl.git)
+    git clone https://gitlab.com/asus-linux/supergfxctl.git
     cd supergfxctl
     make
     sudo make install
@@ -83,7 +83,7 @@ Download the latest release and install it using `apt` to automatically handle d
 
 ```bash
 sudo apt update
-sudo apt install ./rog-tools-custom.deb
+sudo apt install ./rog-tools-custom_1.0.1.deb
 ```
 
 ### Manual Installation
