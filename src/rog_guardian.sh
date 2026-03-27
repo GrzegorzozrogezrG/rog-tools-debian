@@ -1,40 +1,31 @@
-#!/bin/bash
+!/bin/bash
 
 # --- CONFIGURATION ---
-# Path to the thermal sensor (standard for most ROG laptops)
-TEMP_PATH="/sys/class/thermal/thermal_zone0/temp" 
+TEMP_LIMIT=80
+CHECK_INTERVAL=10
+TEMP_FILE="/sys/class/thermal/thermal_zone0/temp"
 
-# Temperature thresholds (in millidegrees Celsius)
-HOT=80000    # 80°C -> Switch to Turbo mode for max cooling
-SAFE=60000   # 60°C -> Return to Balanced mode (avoids screen flickering)
+echo "ROG Guardian started. Monitoring CPU temperature..."
 
-# Initial state to prevent redundant command execution
-last_state="balanced"
-
-echo "ROG Guardian started. Monitoring temperatures..."
-
+# --- MAIN LOOP ---
 while true; do
-    # Read current CPU temperature
-    current_temp=$(cat $TEMP_PATH)
-    
-    # 1. ENTER TURBO MODE (High Load)
-    # If temp is above 80°C and we aren't already in Turbo
-    if [ "$current_temp" -gt "$HOT" ] && [ "$last_state" != "turbo" ]; then
-        asusctl profile set Turbo
-        last_state="turbo"
-        # Send a critical system notification
-        notify-send -u critical "ROG Guardian" "High Temperature: $((current_temp/1000))°C. Switching to Turbo Mode."
-    
-    # 2. RETURN TO BALANCED MODE (System Cooled)
-    # If temp drops below 60°C and we are currently in Turbo
-    # We return to Balanced instead of Quiet to maintain display stability
-    elif [ "$current_temp" -lt "$SAFE" ] && [ "$last_state" != "balanced" ]; then
-        asusctl profile set Balanced
-        last_state="balanced"
-        # Send a standard system notification
-        notify-send "ROG Guardian" "System Cooled: $((current_temp/1000))°C. Returning to Balanced Mode."
+    if [ -f "$TEMP_FILE" ]; then
+        TEMP_RAW=$(cat "$TEMP_FILE")
+        TEMP_C=$((TEMP_RAW / 1000))
+
+        if [ "$TEMP_C" -gt "$TEMP_LIMIT" ]; then
+            # Get current profile to avoid redundant commands
+            CURRENT_PROFILE=$(asusctl profile get | awk '{print $NF}' | tr -d '[:space:]')
+            
+            if [ "$CURRENT_PROFILE" != "Turbo" ]; then
+                asusctl profile set Turbo
+                # Wayland-friendly notification
+                notify-send -u critical "ROG Guardian" "Temperature hit ${TEMP_C}°C. Switching to TURBO mode!"
+            fi
+        fi
+    else
+        echo "Error: Thermal zone not found at $TEMP_FILE"
     fi
 
-    # Wait 10 seconds before the next check to save CPU cycles
-    sleep 10
+    sleep "$CHECK_INTERVAL"
 done
