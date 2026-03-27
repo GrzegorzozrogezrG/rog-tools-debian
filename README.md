@@ -1,6 +1,6 @@
 # 🚀 ROG Tools for Debian (Strix G513RC)
 
-A lightweight suite designed to manage cooling, GPU modes, and RGB lighting on the **ASUS ROG Strix G513RC** running Debian. This project replaces the need for heavy Windows software with native, efficient Linux scripts.
+A lightweight suite designed to manage cooling, GPU modes, and RGB lighting on the **ASUS ROG Strix G513RC** running Debian 13. This project replaces the need for heavy Windows software with native, efficient Linux scripts.
 
 ---
 
